@@ -60,18 +60,18 @@ describe("PUT /books/:id", function(){
         const res =await request(app)
         .put(`/books/${test_isbn}`)
         //from solutions
-        //still cant get to work
-        .send({
+        .send({book:{
             amazon_url: "https://taco.com",
             author: "mctest",
             language: "english",
             pages: 1000,
             publisher: "yeah right",
             title: "UPDATED BOOK",
-            year: 2000
+            year: 2000}
           });
-          console.log(res.body.book)
+        //   console.log(res.body)
         expect(res.body.book).toHaveProperty("isbn");
+        expect(res.statusCode).toBe(200)
         expect(res.body.book.title).toBe("UPDATED BOOK");
     })
 
